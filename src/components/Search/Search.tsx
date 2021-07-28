@@ -30,7 +30,7 @@ const Search: React.FC = () => {
         placeholder="Enter a City"
         placeholderTextColor="#999"
         style={styles.searchInput}
-        onChangeText={text => setCity(text)}
+        onChangeText={setCity}
         value={city}
       />
       <TouchableOpacity style={styles.container} onPress={searchCityHandler}>
