@@ -9,13 +9,21 @@ import Search from '../components/Search/Search';
 import WeatherContainer from '../components/WeatherContainer/WeatherContainer';
 import WeeklyWeather from '../components/WeeklyWeather/WeeklyWeather';
 import TodayWeatherDetails from '../components/TodayWeatherDetails/TodayTemperatures';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
+import {useEffect} from 'react';
+import {fetchFromStorage} from '../store/thunk/asyncStorageThunk';
 
 const HomeScreen: React.FC = () => {
+  const dispatch = useDispatch();
+
   const weeklyWeather = useSelector(
     (state: RootState) => state.weather.weeklyWeather,
   );
+
+  useEffect(() => {
+    dispatch(fetchFromStorage());
+  }, [dispatch]);
 
   if (!weeklyWeather) {
     return (
