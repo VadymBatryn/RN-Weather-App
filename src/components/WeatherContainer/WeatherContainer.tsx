@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View} from 'react-native';
-//import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useSelector} from 'react-redux';
 import {RootState} from '../../store/configureStore';
 
@@ -49,8 +49,8 @@ const WeatherContainer: React.FC<WeatherContainerProps> = ({
         </Text>
       </View>
       <View style={styles.weatherInfoContainer}>
-        <Text style={styles.temperature}>{temperature + iconName}</Text>
-        {/* <Icon name={iconName} color="#fff" size={75} /> */}
+        <Text style={styles.temperature}>{temperature}</Text>
+        <Icon name={iconName} color="#fff" size={75} />
       </View>
     </View>
   );
