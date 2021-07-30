@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit';
-import {weeklyWeather} from '../../models/weeklyWeatherModel';
+import {weeklyWeather} from '../../models/weeklyWeather';
 import {fetchWeeklyWeather} from '../thunk/asyncFetchWeather';
 
 const weatherAppSlice = createSlice({
