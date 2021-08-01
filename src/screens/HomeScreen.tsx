@@ -1,17 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {ActivityIndicator, ImageBackground, View} from 'react-native';
-
+import {useDispatch, useSelector} from 'react-redux';
+import {RootState} from '../store/configureStore';
 import {StyleSheet} from 'react-native';
-//import {useNavigation} from '@react-navigation/core';
 import {SafeAreaView} from 'react-native-safe-area-context';
-
+//Components
 import Search from '../components/Search/Search';
 import WeatherContainer from '../components/WeatherContainer/WeatherContainer';
 import WeeklyWeather from '../components/WeeklyWeather/WeeklyWeather';
 import TodayWeatherDetails from '../components/TodayWeatherDetails/TodayTemperatures';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../store/configureStore';
-import {useEffect} from 'react';
+//Thunk
 import {fetchFromStorage} from '../store/thunk/asyncStorageThunk';
 
 const HomeScreen: React.FC = () => {
