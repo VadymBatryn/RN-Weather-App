@@ -15,10 +15,10 @@ const TodayTemperatures = () => {
     let itemData = new Date(item.dt * 1000);
     let todayData = new Date();
 
-    if (itemData.getUTCDate() === todayData.getUTCDate()) {
+    if (itemData.toLocaleDateString() === todayData.toLocaleDateString()) {
       return item;
     } else if (
-      itemData.getUTCDate() === todayData.getUTCDate() + 1 &&
+      itemData.toLocaleDateString() === todayData.toLocaleDateString() + 1 &&
       itemData.getHours() > 0 &&
       itemData.getHours() <= todayData.getHours()
     ) {
