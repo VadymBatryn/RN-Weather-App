@@ -25,11 +25,15 @@ const HomeScreen: React.FC = () => {
     dispatch(fetchFromStorage());
   }, [dispatch]);
 
-  const todayWeather = weeklyWeather?.list.filter(dayInfo => {
-    if (new Date(dayInfo.dt * 1000).getDay() === new Date().getDay()) {
-      return dayInfo;
-    }
-  });
+  let todayWeather;
+
+  if (weeklyWeather) {
+    todayWeather = weeklyWeather.list.filter(dayInfo => {
+      if (new Date(dayInfo.dt * 1000).getUTCDay() === new Date().getUTCDay()) {
+        return dayInfo;
+      }
+    });
+  }
 
   if (!todayWeather) {
     return (
