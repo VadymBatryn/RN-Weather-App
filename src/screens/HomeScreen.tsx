@@ -28,7 +28,10 @@ const HomeScreen: React.FC = () => {
   }, [dispatch]);
 
   const todayWeather = weeklyWeather?.list.filter(dayInfo => {
-    if (new Date(dayInfo.dt * 1000).getDay() === new Date().getDay()) {
+    if (
+      new Date(dayInfo.dt * 1000).toLocaleDateString() ===
+      new Date().toLocaleDateString()
+    ) {
       return dayInfo;
     }
   });
