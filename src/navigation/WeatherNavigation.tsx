@@ -1,12 +1,33 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {NavigationContainer} from '@react-navigation/native';
+import {
+  createStackNavigator,
+  StackNavigationProp,
+} from '@react-navigation/stack';
+import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen';
 import WeatherDetails from '../screens/DetailsScreen';
 
-const Stack = createStackNavigator();
-const Drawer = createDrawerNavigator();
+type WeatherStackParamsList = {
+  Home: undefined;
+  Details: {date: number};
+};
+
+export type DetailsScreenRouteProp = RouteProp<
+  WeatherStackParamsList,
+  'Details'
+>;
+
+export type DetailsScreenNavigationProp = StackNavigationProp<
+  WeatherStackParamsList,
+  'Details'
+>;
+
+type Props = {
+  route: DetailsScreenRouteProp;
+  navigation: DetailsScreenNavigationProp;
+};
+
+const Stack = createStackNavigator<WeatherStackParamsList>();
 
 const WeatherStackNavigator: React.FC = () => (
   <Stack.Navigator>
@@ -15,20 +36,19 @@ const WeatherStackNavigator: React.FC = () => (
       component={HomeScreen}
       options={{headerShown: false}}
     />
-    <Stack.Screen name="Weather Details" component={WeatherDetails} />
+    <Stack.Screen
+      name="Details"
+      component={WeatherDetails}
+      options={{headerShown: false}}
+      initialParams={{date: undefined}}
+    />
   </Stack.Navigator>
-);
-
-const WeatherDrawerNavigator: React.FC = () => (
-  <Drawer.Navigator>
-    <Drawer.Screen name="Home" component={WeatherStackNavigator} />
-  </Drawer.Navigator>
 );
 
 const AppNavigation: React.FC = () => {
   return (
     <NavigationContainer>
-      <WeatherDrawerNavigator />
+      <WeatherStackNavigator />
     </NavigationContainer>
   );
 };
