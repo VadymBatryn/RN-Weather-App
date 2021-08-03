@@ -5,6 +5,7 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  Keyboard,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {fetchWeeklyWeather} from '../../store/thunk/asyncFetchWeather';
@@ -18,6 +19,7 @@ const Search: React.FC = () => {
   const [city, setCity] = useState('');
 
   const searchCityHandler = () => {
+    Keyboard.dismiss();
     setLoading(true);
     dispatch(fetchWeeklyWeather(city.trim()));
     setCity('');
