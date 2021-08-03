@@ -36,6 +36,7 @@ const WeeklyWeather: React.FC = () => {
             <ListItem
               title={Days[new Date(itemData.item.dt * 1000).getDay()]}
               temperature={itemData.item.main.temp.toFixed() + '°'}
+              date={itemData.item.dt * 1000}
             />
           )}
           showsVerticalScrollIndicator={false}
