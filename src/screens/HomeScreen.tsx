@@ -8,7 +8,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Search from '../components/Search/Search';
 import WeatherContainer from '../components/WeatherContainer/WeatherContainer';
 import WeeklyWeather from '../components/WeeklyWeather/WeeklyWeather';
-import TodayWeatherDetails from '../components/TodayWeatherDetails/TodayTemperatures';
+import TodayWeatherDetails from '../components/TodayTemperatures/TodayTemperatures';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
 import {useEffect} from 'react';
