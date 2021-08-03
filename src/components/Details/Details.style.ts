@@ -1,9 +1,8 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
 
 export default StyleSheet.create({
   container: {
     marginHorizontal: 25,
-    marginTop: 10,
   },
   details: {
     flexDirection: 'row',
@@ -20,11 +19,11 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 15,
+    marginTop: 5,
   },
   gridCard: {
-    height: 100,
-    width: 100,
+    height: Dimensions.get('screen').width / 4,
+    width: Dimensions.get('screen').width / 4,
     alignItems: 'center',
     backgroundColor: 'rgba(255,255,255,0.1)',
     margin: 5,

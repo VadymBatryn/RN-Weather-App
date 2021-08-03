@@ -26,6 +26,7 @@ const Chart: React.FC<ChartProps> = ({title, info, suffix}) => {
         width={Dimensions.get('screen').width - 75}
         height={Dimensions.get('screen').height / 4}
         yAxisSuffix={suffix}
+        xLabelsOffset={-5}
         chartConfig={CHART_CONFIG}
         bezier
         style={styles.chart}
