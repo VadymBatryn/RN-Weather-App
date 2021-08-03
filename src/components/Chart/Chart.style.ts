@@ -7,7 +7,7 @@ export default StyleSheet.create({
     marginHorizontal: 25,
   },
   chart: {
-    marginVertical: 8,
+    marginVertical: 5,
     borderRadius: 5,
   },
   container: {
