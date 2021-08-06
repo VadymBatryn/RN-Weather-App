@@ -1,18 +1,20 @@
-import React from 'react';
-import {ActivityIndicator, ImageBackground, View} from 'react-native';
-
-import {StyleSheet} from 'react-native';
-//import {useNavigation} from '@react-navigation/core';
-import {SafeAreaView} from 'react-native-safe-area-context';
-
+import React, {useEffect} from 'react';
+import {
+  ActivityIndicator,
+  ImageBackground,
+  View,
+  StyleSheet,
+  SafeAreaView,
+} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+//Store
+import {RootState} from '../store/configureStore';
+import {fetchFromStorage} from '../store/thunk/asyncStorageThunk';
+//Components
 import Search from '../components/Search/Search';
 import WeatherContainer from '../components/WeatherContainer/WeatherContainer';
 import WeeklyWeather from '../components/WeeklyWeather/WeeklyWeather';
 import TodayWeatherDetails from '../components/TodayTemperatures/TodayTemperatures';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../store/configureStore';
-import {useEffect} from 'react';
-import {fetchFromStorage} from '../store/thunk/asyncStorageThunk';
 
 const HomeScreen: React.FC = () => {
   const dispatch = useDispatch();
@@ -61,7 +63,7 @@ const HomeScreen: React.FC = () => {
           <View>
             <Search />
             <WeatherContainer
-              temperature={todayWeather[0].main.temp.toFixed()}
+              temperature={todayWeather[0].main.temp.toFixed() + '°'}
               location={
                 weeklyWeather?.city.name + ', ' + weeklyWeather?.city.country
               }
