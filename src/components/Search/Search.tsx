@@ -30,7 +30,7 @@ const Search: React.FC = () => {
     <View style={styles.searchContainer}>
       <TextInput
         placeholder="Enter a City"
-        placeholderTextColor="#999"
+        placeholderTextColor="#fff"
         style={styles.searchInput}
         onChangeText={setCity}
         value={city}

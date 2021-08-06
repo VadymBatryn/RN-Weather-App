@@ -19,7 +19,7 @@ export default StyleSheet.create({
   searchIcon: {
     height: '100%',
     width: '100%',
-    tintColor: '#999',
+    tintColor: '#fff',
   },
   container: {
     width: 20,
