@@ -38,7 +38,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({route}) => {
     .map(day => {
       return {
         label: new Date(day.dt * 1000).getUTCHours().toString(),
-        data: day.pop * 100,
+        data: +(day.pop * 100).toFixed(),
       };
     });
 
@@ -56,7 +56,7 @@ const WeatherDetails: React.FC<WeatherDetailsProps> = ({route}) => {
     .map(day => {
       return {
         label: new Date(day.dt * 1000).getUTCHours().toString(),
-        data: day.main.temp,
+        data: +day.main.temp.toFixed(),
       };
     });
 
