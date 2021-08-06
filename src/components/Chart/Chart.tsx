@@ -23,6 +23,7 @@ const Chart: React.FC<ChartProps> = ({title, info, suffix}) => {
           labels: info.map(item => item.label),
           datasets: [{data: info.map(item => item.data)}],
         }}
+        fromZero
         width={Dimensions.get('screen').width - 75}
         height={Dimensions.get('screen').height / 4}
         yAxisSuffix={suffix}
