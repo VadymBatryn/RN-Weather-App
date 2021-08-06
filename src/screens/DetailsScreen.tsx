@@ -6,17 +6,14 @@ import {
   ImageBackground,
   ActivityIndicator,
 } from 'react-native';
-import Details from '../components/Details/Details';
-
-import {useRoute} from '@react-navigation/native';
 import {useSelector} from 'react-redux';
 import {RootState} from '../store/configureStore';
+import {WeatherDetailsProps} from '../navigation/WeatherNavigation';
+
 import Chart from '../components/Chart/Chart';
-import {DetailsScreenRouteProp} from '../navigation/WeatherNavigation';
+import Details from '../components/Details/Details';
 
-const WeatherDetails: React.FC = () => {
-  const route = useRoute<DetailsScreenRouteProp>();
-
+const WeatherDetails: React.FC<WeatherDetailsProps> = ({route}) => {
   const date = route.params?.date;
 
   const weeklyWeather = useSelector(
@@ -27,11 +24,13 @@ const WeatherDetails: React.FC = () => {
     dayInfo => dayInfo.dt * 1000 === date,
   );
 
-  const rainChartData = weeklyWeather?.list
+  const probabilityOfPrecipitationData = weeklyWeather?.list
     .filter(dayInfo => {
+      let dayDate = dayInfo.dt * 1000;
       if (
-        new Date(dayInfo.dt * 1000).getUTCDate() ===
-        new Date(+date).getUTCDate()
+        new Date(dayDate).getUTCDate() === new Date(+date).getUTCDate() ||
+        (new Date(dayDate).getUTCDate() === new Date().getUTCDate() + 1 &&
+          new Date(dayDate).getUTCHours() <= 0)
       ) {
         return dayInfo;
       }
@@ -45,9 +44,11 @@ const WeatherDetails: React.FC = () => {
 
   const temperaturesChartData = weeklyWeather?.list
     .filter(dayInfo => {
+      let dayDate = dayInfo.dt * 1000;
       if (
-        new Date(dayInfo.dt * 1000).getUTCDate() ===
-        new Date(+date).getUTCDate()
+        new Date(dayDate).getUTCDate() === new Date(+date).getUTCDate() ||
+        (new Date(dayDate).getUTCDate() === new Date().getUTCDate() + 1 &&
+          new Date(dayDate).getUTCHours() <= 0)
       ) {
         return dayInfo;
       }
@@ -65,7 +66,9 @@ const WeatherDetails: React.FC = () => {
         source={require('../assets/698610.jpeg')}
         style={styles.backgroundImage}>
         <SafeAreaView>
-          {selectedDetails && rainChartData && temperaturesChartData ? (
+          {selectedDetails &&
+          probabilityOfPrecipitationData &&
+          temperaturesChartData ? (
             <View>
               <Details
                 feel_like={selectedDetails[0].main.feels_like.toFixed() + '°'}
@@ -76,9 +79,9 @@ const WeatherDetails: React.FC = () => {
                 wind={selectedDetails[0].wind.speed + 'km/h'}
               />
               <Chart
-                title={'Chanse of Rain'}
+                title={'Probability of Precipitation'}
                 suffix={'%'}
-                info={rainChartData}
+                info={probabilityOfPrecipitationData}
               />
               <Chart
                 title={'Day temperatures'}
