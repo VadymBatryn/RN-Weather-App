@@ -7,22 +7,27 @@ import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import HomeScreen from '../screens/HomeScreen';
 import WeatherDetails from '../screens/DetailsScreen';
 
+export enum WeatherStackScreenTypes {
+  Home = 'Home',
+  Details = 'Details',
+}
+
 type WeatherStackParamsList = {
-  Home: undefined;
-  Details: {date: number};
+  [WeatherStackScreenTypes.Home]: undefined;
+  [WeatherStackScreenTypes.Details]: {date: number};
 };
 
 export type DetailsScreenRouteProp = RouteProp<
   WeatherStackParamsList,
-  'Details'
+  WeatherStackScreenTypes.Details
 >;
 
 export type DetailsScreenNavigationProp = StackNavigationProp<
   WeatherStackParamsList,
-  'Details'
+  WeatherStackScreenTypes.Details
 >;
 
-type Props = {
+export type WeatherDetailsProps = {
   route: DetailsScreenRouteProp;
   navigation: DetailsScreenNavigationProp;
 };
@@ -32,12 +37,12 @@ const Stack = createStackNavigator<WeatherStackParamsList>();
 const WeatherStackNavigator: React.FC = () => (
   <Stack.Navigator>
     <Stack.Screen
-      name="Home"
+      name={WeatherStackScreenTypes.Home}
       component={HomeScreen}
       options={{headerShown: false}}
     />
     <Stack.Screen
-      name="Details"
+      name={WeatherStackScreenTypes.Details}
       component={WeatherDetails}
       options={{headerShown: false}}
       initialParams={{date: undefined}}
