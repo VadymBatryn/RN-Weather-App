@@ -1,4 +1,6 @@
 # RN-Weather-App
+To use u need have a APIkey
+https://openweathermap.org/api
 
 # First Load
 
