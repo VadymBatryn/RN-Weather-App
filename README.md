@@ -1,5 +1,5 @@
 # RN-Weather-App
-To use u need have a APIkey
+To use you need have a APIkey and setup it to react-config , .env file.
 https://openweathermap.org/api
 
 # First Load
